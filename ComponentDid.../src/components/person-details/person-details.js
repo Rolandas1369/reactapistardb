@@ -17,9 +17,6 @@ export default class PersonDetails extends Component{
         
         this.updatePerson();
        
-        
-        
-        
     }
 
     // updates state from retrieved data and rerender info
@@ -28,14 +25,9 @@ export default class PersonDetails extends Component{
         // update only if state is not updated
         if (this.props.personId != prevProps.personId) {
             this.setState({loading: true})
-            this.updatePerson();
-            
-            
-        }
-        
-        console.log("after")
-
-        
+            this.updatePerson();          
+        } 
+        console.log("after")      
     }
 
     onPersonLoaded = (person) => {
@@ -43,25 +35,21 @@ export default class PersonDetails extends Component{
             person
             
         });
-      
-
     }
 
     // by clicking on person we are updating elements for this good to use is updatePerson()
     updatePerson = () => {
+
         const { personId } = this.props;
         if (!personId) {
             return;
         }
-
-       
 
         this.swapiService
             .getPerson(personId)
             .then((person) => {
                 this.setState({ loading:false, person });
       });
-
     }
 
     render() {
@@ -82,7 +70,6 @@ export default class PersonDetails extends Component{
             </div>
         )
     }
-
 };
 
 const PersonView = ({person}) => {
