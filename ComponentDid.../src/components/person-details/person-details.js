@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './person-details.css'
 import SwapiService from '../../services/swapi-service';
 import Spinner from '../spinner';
+import ErrorButton from '../error-button/error-button';
 
 export default class PersonDetails extends Component{
 
@@ -82,7 +83,7 @@ const PersonView = ({person}) => {
             <img className="person-image"
                     src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} />
                 <div className="card-body">
-                    <h4>{name} </h4>
+                    <h4>{name} {id} </h4>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">
                             <span className="term">Gender</span>
@@ -97,6 +98,7 @@ const PersonView = ({person}) => {
                             <span>{eyeColor}</span>
                         </li>
                     </ul>
+                    <ErrorButton />
                 </div>    
         </React.Fragment>
     )

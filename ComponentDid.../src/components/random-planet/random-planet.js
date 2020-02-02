@@ -33,8 +33,14 @@ export default class RandomPlanet extends Component {
         
         this.updatePlanet();
         this.interval = setInterval(this.updatePlanet, 10000);
+        
+    }
+
+    // clear resources
+    componentWillUnmount() {
         clearInterval(this.interval);
     }
+
 
     // this function is passed to another function this is the case for arrow function becouse it stores data
     // now arrow function dosnt hold state
