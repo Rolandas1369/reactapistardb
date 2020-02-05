@@ -20,13 +20,30 @@ export default class RandomPlanet extends Component {
         
     };
 
-    // constructor call function imidiatly as code starts
-    constructor() {
-        super();
+    //constructor call function imidiatly as code starts
+    // constructor() {
+    //     super();
+    //     this.updatePlanet();
+        
+
+    // }
+
+    // replaces contructor best practice is not to use server related info in constructors
+    componentDidMount() {
+        
         this.updatePlanet();
+        this.interval = setInterval(this.updatePlanet, 10000);
+        
     }
 
+    // clear resources
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
+
     // this function is passed to another function this is the case for arrow function becouse it stores data
+    // now arrow function dosnt hold state
     onPlanetLoaded = (planet) => {
         this.setState({
             planet,
@@ -45,8 +62,9 @@ export default class RandomPlanet extends Component {
         });
     }
 
-    updatePlanet() {
-        const id = Math.floor(Math.random() * 25) + 2;
+    // update passes data this means it must be arrow function
+    updatePlanet = () => {
+        const id = Math.floor(Math.random() * 17) + 2;
         this.swapiService
         .getPlanet(id)
         .then(this.onPlanetLoaded)
