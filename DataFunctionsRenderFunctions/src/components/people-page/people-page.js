@@ -40,6 +40,9 @@ export default class PeoplePage extends Component {
         }
 
 
+
+
+
         return (
             <div className="row mb2">
                 <div className="col-md-6">
