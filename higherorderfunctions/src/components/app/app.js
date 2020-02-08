@@ -13,6 +13,15 @@ import Row from "../row/row";
 import ItemDetails, { Record } from "../item-details/item-details";
 import SwapiService from '../../services/swapi-service';
 
+import {
+  PersonList,
+  PlanetList,
+  StarshipList,
+  PersonDetails,
+  PlanetDetails,
+  StarshipDetails
+} from '../sw-components';
+
 
 // functions ca pass data extracting functions
 // render function is function that is passed as function to display elements
@@ -53,44 +62,40 @@ export default class App extends Component {
 
         const planet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
 
-        const { getPerson,
-            getStarship,
-            getPersonImage,
-            getStarshipImage } = this.swapiService;
 
-        const personDetails = (
-            <ItemDetails
-                itemId={11}
-                getData={getPerson}
-                getImageUrl={getPersonImage} >
-          
-                <Record field="gender" label="Gender" />
-                <Record field="eyeColor" label="Eye Color" />
-          
-            </ItemDetails>
-        );
-        
-        const starshipDetails = (
-            <ItemDetails
-                itemId={5}
-                getData={getStarship}
-                getImageUrl={getStarshipImage}>
-          
-                <Record field="model" label="Model" />
-                <Record field="length" label="Length" />
-                <Record field="constInCredits" label="Cost" />
-            </ItemDetails>
-          
-        );    
+
+ 
 
         return (
             <ErrorBoundary>
               <div className="stardb-app">
                 <Header />
+
+                <PersonDetails itemId={11} />
+
+                <PlanetDetails itemId={3} />
+
+                <StarshipDetails itemId={5} />
+
+
+                {/* hc-helpers contains functions with this components it is easier to read */}
+                <PersonList>
+                  { ({name}) => <span>{name}</span> }
+                </PersonList>
+
+                <StarshipList>
+                  { ({name}) => <span>{name}</span> }
+                </StarshipList>
+
+                <PlanetList>
+                  { ({name}) => <span>{name}</span> }
+                </PlanetList>
+
+                
+
+                
       
-                <Row
-                  left={personDetails}
-                  right={starshipDetails} />
+                
               </div>
             </ErrorBoundary>
           );
