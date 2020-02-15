@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import './item-details.css'
-import SwapiService from '../../services/swapi-service';
+
 import ErrorButton from '../error-button/error-button';
 
 
@@ -12,17 +12,17 @@ const Record = ({ item, field, label }) => {
         <span>{ item[field] }</span>
       </li>
     );
-  };
-
-  export {
-    Record
-  };
+};
 
 
+export {
+  Record
+};
 
-export default class PersonDetails extends Component{
 
-    swapiService = new SwapiService();
+
+export default class ItemDetails extends Component{
+
 
     state = {
       item: null,
@@ -77,8 +77,7 @@ export default class PersonDetails extends Component{
           return <span>Select a item from a list</span>;
         }
     
-        const { id, name, gender,
-                  birthYear, eyeColor } = item;
+        const { name } = item;
     
         return (
           <div className="item-details card">
@@ -92,7 +91,6 @@ export default class PersonDetails extends Component{
                 {
                     // passes children to map 
                   React.Children.map(this.props.children, (child) => {
-                    // clones element and adds new data item
                     return React.cloneElement(child, { item });
                   })
                 }
